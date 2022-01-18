@@ -4,7 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 
-
+import { DialogModule } from '@syncfusion/ej2-angular-popups';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -52,10 +53,12 @@ const materialModules = [
   ],
   imports: [
     BrowserModule,
+    DialogModule,
     HttpClientModule,
     NoopAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    MatDialogModule,
     ...materialModules
   ],
   providers: [authInterceptorProviders],

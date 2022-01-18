@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FileUploadService } from 'src/app/services/file-upload.service';
-import {JSONFile} from "@angular/cli/utilities/json-file";
 
 @Component({
   selector: 'app-file-upload',
@@ -19,10 +18,12 @@ export class FileUploadComponent implements OnInit {
   fileInfos?: Observable<any>;
 
   form: any = {
-    filename: null
+    fileName: null,
   };
 
-  constructor(private uploadService: FileUploadService) { }
+  result! : ResultModel[];
+
+  constructor(private uploadService: FileUploadService) {}
 
   ngOnInit(): void {
     this.fileInfos = this.uploadService.getFiles();
@@ -36,11 +37,18 @@ export class FileUploadComponent implements OnInit {
     return  "{ \"fileName\" : \"" + o + "\" }";
   }
 
-  onAnalyse(s: string): void {
-    let a = JSON.stringify(s);
-    this.uploadService.analyse(s).subscribe(
+  onAnalyse(filename : string): void {
+    this.uploadService.analyse(filename).subscribe(
       data => {
-        console.log(data);
+        this.result = data;
+      },
+    );
+  }
+
+  onDelete(filename : string): void {
+    this.uploadService.delete(filename).subscribe(
+      data => {
+        this.result = data;
       },
     );
   }
@@ -81,4 +89,11 @@ export class FileUploadComponent implements OnInit {
       this.selectedFiles = undefined;
     }
   }
+}
+
+interface  ResultModel{
+  warningRate: number,
+  vulnerabilityType : string,
+  detectedLineNumber : number,
+  detectedLine : string
 }

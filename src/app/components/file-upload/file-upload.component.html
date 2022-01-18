@@ -19,7 +19,6 @@
     </button>
   </div>
 </div>
-
 <div *ngIf="currentFile" class="progress my-3">
   <div
     class="progress-bar progress-bar-info progress-bar-striped"
@@ -32,10 +31,7 @@
     {{ progress }}%
   </div>
 </div>
-
-
 <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
-
 <div class="card mt-3">
   <div class="card-header">List of Files</div>
   <div class="w-100 p-3" style="background-color: #eee;">
@@ -48,14 +44,16 @@
       </thead>
       <tbody class="table" *ngFor="let file of fileInfos | async">
       <tr>
-        <td>{{ file.name }}</td>
+        <td for="fileName">{{ file.name }}</td>
         <td>
           <ul class="list-group list-group-horizontal">
-            <li class="list-group-item"><button class="button" class="btn btn-success" (click)="onAnalyse('CProgrammingExample.c')">
+            <li class="list-group-item">
+              <button class="button" class="btn btn-success" (click)="onAnalyse( file.name )">
               Analyse
             </button>
             </li>
-            <li class="list-group-item"><button class="button" class="btn btn-danger" (click)="onAnalyse('CProgrammingExample.c')">
+            <li class="list-group-item">
+              <button class="button" class="btn btn-danger">
               Delete
             </button>
             </li>
@@ -64,6 +62,24 @@
       </tr>
       </tbody>
     </table>
-
   </div>
 </div>
+
+<div  *ngFor="let aResult of result ">
+  <div>
+    <ul>
+      <li> <strong style="color: red;">Line Number : </strong > {{aResult.detectedLineNumber}}</li>
+      <li> <strong style="color: red;">Vulnerability Type : </strong> {{aResult.vulnerabilityType}}</li>
+      <li> <strong style="color: red;">Warning Rate % : </strong> {{aResult.warningRate}}</li>
+      <li> <strong style="color: red;">Detected Line : </strong> {{aResult.detectedLine}}</li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+

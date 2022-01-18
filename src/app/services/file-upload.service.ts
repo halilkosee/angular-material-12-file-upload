@@ -44,14 +44,24 @@ export class FileUploadService {
     });
   }
 
-  analyse(filename : String): Observable<any> {
+  analyse(fileName : string): Observable<any> {
     let headers = new HttpHeaders();
     headers.append('Content-Type','application/json')
     headers.append('Access-Control-Allow-Origin', '*');
 
-    return this.http.post(`${this.baseUrl}/analyse`, filename,{
-      headers: headers,
-      responseType: 'json',
-    });
+    return this.http.post(`${this.baseUrl}/analyse`, {
+      fileName,
+    },httpOptions );
   }
+
+  delete(fileName : string): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type','application/json')
+    headers.append('Access-Control-Allow-Origin', '*');
+
+    return this.http.post(`${this.baseUrl}/delete`, {
+      fileName,
+    },httpOptions );
+  }
+
 }
