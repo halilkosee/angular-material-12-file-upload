@@ -33,27 +33,27 @@
 </div>
 <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
 <div class="card mt-3">
-  <div class="card-header">List of Files</div>
+  <div class="card-header"> <strong> List of Files </strong> </div>
   <div class="w-100 p-3" style="background-color: #eee;">
     <table >
       <thead>
       <tr>
-        <th scope="col">List of Files</th>
-        <th scope="col">Last</th>
+        <th scope="col">Files</th>
+        <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody class="table" *ngFor="let file of fileInfos | async">
       <tr>
-        <td for="fileName">{{ file.name }}</td>
+        <td for="fileName"> <strong> <h5>{{ file.name }}</h5> </strong> </td>
         <td>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item">
-              <button class="button" class="btn btn-success" (click)="onAnalyse( file.name )">
+              <button class="button" class="btn btn-success"  (click)="onAnalyse( file.name )">
               Analyse
             </button>
             </li>
             <li class="list-group-item">
-              <button class="button" class="btn btn-danger">
+              <button class="button" class="btn btn-danger" (click)="onDelete( file.name )">
               Delete
             </button>
             </li>
@@ -65,13 +65,16 @@
   </div>
 </div>
 
-<div  *ngFor="let aResult of result ">
+<div *ngFor="let aResult of result ">
+  <strong style="color: darkblue;"> {{aResult.successCode}} </strong >
   <div>
-    <ul>
-      <li> <strong style="color: red;">Line Number : </strong > {{aResult.detectedLineNumber}}</li>
-      <li> <strong style="color: red;">Vulnerability Type : </strong> {{aResult.vulnerabilityType}}</li>
-      <li> <strong style="color: red;">Warning Rate % : </strong> {{aResult.warningRate}}</li>
-      <li> <strong style="color: red;">Detected Line : </strong> {{aResult.detectedLine}}</li>
+  </div>
+  <div style="background-color:LightGray;">
+    <ul style="list-style-type:none;">
+      <li> <strong style="color: indigo;">Line Number : </strong > {{aResult.detectedLineNumber}}</li>
+      <li> <strong style="color: indigo;">Vulnerability Type : </strong> {{aResult.vulnerabilityType}}</li>
+      <li> <strong style="color: indigo;">Warning Rate % : </strong> {{aResult.warningRate}}</li>
+      <li> <strong style="color: indigo;">Detected Line : </strong> {{aResult.detectedLine}}</li>
     </ul>
   </div>
 </div>

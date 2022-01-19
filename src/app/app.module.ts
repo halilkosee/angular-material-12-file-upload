@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 const materialModules = [
   MatCardModule,
@@ -51,16 +52,17 @@ const materialModules = [
     BoardUserComponent,
     FileUploadComponent
   ],
-  imports: [
-    BrowserModule,
-    DialogModule,
-    HttpClientModule,
-    NoopAnimationsModule,
-    AppRoutingModule,
-    FormsModule,
-    MatDialogModule,
-    ...materialModules
-  ],
+    imports: [
+        BrowserModule,
+        DialogModule,
+        HttpClientModule,
+        NoopAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        MatDialogModule,
+        ...materialModules,
+        MatExpansionModule
+    ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

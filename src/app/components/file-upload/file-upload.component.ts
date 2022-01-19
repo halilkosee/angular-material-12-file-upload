@@ -23,7 +23,8 @@ export class FileUploadComponent implements OnInit {
 
   result! : ResultModel[];
 
-  constructor(private uploadService: FileUploadService) {}
+  constructor(private uploadService: FileUploadService) {
+  }
 
   ngOnInit(): void {
     this.fileInfos = this.uploadService.getFiles();
@@ -33,16 +34,13 @@ export class FileUploadComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
-  created(o: string) : string{
-    return  "{ \"fileName\" : \"" + o + "\" }";
-  }
-
   onAnalyse(filename : string): void {
     this.uploadService.analyse(filename).subscribe(
       data => {
         this.result = data;
       },
     );
+    this.ngOnInit();
   }
 
   onDelete(filename : string): void {
@@ -51,6 +49,7 @@ export class FileUploadComponent implements OnInit {
         this.result = data;
       },
     );
+    this.ngOnInit();
   }
 
   upload(): void {
@@ -85,9 +84,9 @@ export class FileUploadComponent implements OnInit {
           });
 
       }
-
       this.selectedFiles = undefined;
     }
+    this.ngOnInit();
   }
 }
 
@@ -95,5 +94,6 @@ interface  ResultModel{
   warningRate: number,
   vulnerabilityType : string,
   detectedLineNumber : number,
-  detectedLine : string
+  detectedLine : string,
+  successCode : string
 }

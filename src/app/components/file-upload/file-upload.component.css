@@ -36,3 +36,10 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.content {
+  color: black;
+  cursor: pointer;
+  position: relative;
+  background: #333;
+}
