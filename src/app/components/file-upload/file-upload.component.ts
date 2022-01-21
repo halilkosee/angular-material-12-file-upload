@@ -40,7 +40,6 @@ export class FileUploadComponent implements OnInit {
         this.result = data;
       },
     );
-    this.ngOnInit();
   }
 
   onDelete(filename : string): void {
@@ -49,7 +48,7 @@ export class FileUploadComponent implements OnInit {
         this.result = data;
       },
     );
-    this.ngOnInit();
+    location.reload();
   }
 
   upload(): void {
@@ -86,7 +85,7 @@ export class FileUploadComponent implements OnInit {
       }
       this.selectedFiles = undefined;
     }
-    this.ngOnInit();
+    location.reload();
   }
 }
 
